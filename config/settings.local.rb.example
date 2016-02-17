@@ -1,0 +1,3 @@
+settings.leancloud_appid = ""
+settings.leancloud_appkey = ""
+settings.leancloud_send_sms_url = "https://api.leancloud.cn/1.1/requestSmsCode"

@@ -1,0 +1,104 @@
+zh-CN:
+  "true": 是
+  "false": 否
+
+  administrator: 系统管理员
+
+  authlogic:
+    error_messages:
+      login_blank: 不能为空
+      login_not_found: 登录名或者密码无效
+      login_invalid: should use only letters, numbers, spaces, and .-_@ please.
+      consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded, account is disabled.
+      email_invalid: 无效的地址
+      password_blank: 不能为空
+      password_invalid: 登录名或者密码无效
+      not_active: 你的帐号已被锁定
+      not_confirmed: Your account is not confirmed
+      not_approved: Your account is not approved
+      no_authentication_details: 您还没有输入登录信息
+      general_credentials_error: 登录名或者密码无效
+
+  view:
+    pages:
+      index: "#{model.model_name.human}列表"
+      new:   "新建#{model.model_name.human}"
+      edit:  "编辑#{model.model_name.human}"
+      show:  "查看#{model.model_name.human}"
+    links:
+      new:    "新建#{model.model_name.human}"
+      return: "返回"
+      edit:   '编辑'
+      show:   '查看'
+      delete: "删除"
+      delete_confirm: "确定删除?"
+
+  flash:
+    update:
+      success: "#{model.model_name.human} 修改成功"
+    create:
+      success: "#{model.model_name.human} 添加成功"
+    destroy:
+      success: "#{model.model_name.human} 删除成功"
+      failed: "#{model.model_name.human} 删除失败"
+    actions:
+      create:
+        notice: '%{resource_name} 创建成功.'
+        # alert: '%{resource_name} could not be created.'
+      update:
+        notice: '%{resource_name} 修改成功.'
+        # alert: '%{resource_name} could not be updated.'
+      destroy:
+        notice: '%{resource_name} 删除成功.'
+        alert: '%{resource_name} 无法删除.'
+    push:
+      success: "系统消息已推送"
+    client_session:
+      destroy:
+        success: 登出成功
+    password:
+      update:
+        success: 密码修改成功
+
+  simple_form:
+    error_notification:
+      default_message: "表单出现如下错误:"
+
+    hints:
+      user:
+        show:
+          phone: '短信验证码已发送, 请您注意查收并填写至下方 ( 此服务免费 )'
+    labels:
+      client_session:
+        login: 手机号码
+        password: 密码
+    placeholders:
+      admin_session:
+        email: 邮箱
+        password: 密码
+      client_session:
+        login: 手机号码
+        password: 密码
+      password:
+        phone: 手机号
+        reset_code_confirmation: 短信验证码
+        user:
+          password: 新密码
+          password_confirmation: 确认密码
+      user:
+        phone: 手机号
+        password: 密码
+        password_confirmation: 确认密码
+  simple_captcha:
+    placeholder: 验证码
+    message:
+      default: 请输入有效的验证码
+
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
+

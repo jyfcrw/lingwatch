@@ -1,0 +1,133 @@
+@import "compass";
+@import "font-awesome";
+@import "bootstrap-sass-official/bootstrap-sprockets";
+@import "bootstrap-sass-official";
+@import "clockpicker/bootstrap-clockpicker";
+@import "eonasdan-bootstrap-datetimepicker";
+@import "bootstrap-switch";
+
+body {
+  font: 15px/1.5em arial, "Microsoft Yahei", "Hiragino Sans GB", sans-serif;
+}
+
+.form-horizontal .control-label {
+  display: block;
+}
+
+.form-group {
+  .btn {
+    margin-right: 0.5em;
+  }
+}
+
+.thumbnail.borderless {
+  border: 0;
+  border-radius: 0;
+}
+
+.thumbnail.compact {
+  .caption {
+    h3 {
+      margin-top: 0px;
+    }
+  }
+}
+
+.table-pagination {
+  @include clearfix;
+  margin-top: -10px;
+  margin-bottom: 20px;
+
+  .pagination {
+    float: right;
+    margin: 0 0 0 auto;
+  }
+}
+
+td.secret {
+  font-family: monospace;
+}
+
+form.new_admin {
+  .checkbox {
+    margin-top: 0;
+  }
+}
+
+.table {
+  td {
+    a {
+      margin-right: 1em;
+      &.disabled {
+        color: #8a8a8a;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th,
+.table > tbody > tr > td,
+.table > tfoot > tr > th,
+.table > tfoot > tr > td {
+  padding: 11px;
+}
+
+.alert {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.session-logo {
+  font-size: 2.2em;
+  font-weight: 200;
+  color: #333;
+  line-height: 50px;
+  padding: 25px 0;
+  text-align: center;
+}
+.navbar {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.navbar-brand,
+.navbar-nav > li > a {
+    line-height: 60px;
+    height: 60px;
+    min-width: 120px;
+    padding-top: 0;
+    font-size: 16px;
+    padding-right: 21px;
+    text-align: center;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  i {
+    padding: 5px 6px;
+    border-radius: 5px;
+    background-color: #eee;
+    border: 1px solid #cfcfcf;
+  }
+  img {
+    width: 40px;
+  }
+}
+
+.page-header {
+  border-bottom: 0;
+  h1, h2, h3 {
+    margin-top: 0px;
+  }
+}
+
+.page-empty {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666;
+}
+

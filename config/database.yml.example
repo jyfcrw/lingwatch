@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  database: lingwatch_development
+  pool: 10
+  username: postgres
+  password: postgres
+
+test:
+  adapter: postgresql
+  database: lingwatch_test<%= ENV['TEST_ENV_NUMBER'] %>
+  pool: 5
+  username: postgres
+  password: postgres
+
+production:
+  adapter: postgresql
+  database: lingwatch_production
+  pool: 16
+  username: postgres
+  password: postgres

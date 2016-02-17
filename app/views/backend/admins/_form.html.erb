@@ -1,0 +1,11 @@
+<%= f.input :email %>
+<%= f.input :password %>
+<%= f.input :password_confirmation %>
+
+<hr />
+
+<%= f.content_wrapper do %>
+	<%= ok_url_tag %>
+	<%= f.button :submit, class: 'btn btn-primary' %>
+	<%= link_to t('links.return', scope: :view), backend_admins_path, class: "btn btn-default" %>
+<% end %>

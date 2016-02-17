@@ -1,0 +1,63 @@
+<div class="page-header row">
+  <div class="col-md-7">
+    <h1>用户</h1>
+  </div>
+  <div class="col-md-1" style="padding:0; position: relative; height: 34px;">
+    <% if @q.conditions.present? %>
+      <%= link_to "取消搜索", backend_users_path, style: "position: absolute; bottom: 0; right: 0;" %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= search_form_for @q, url: backend_users_path do |f| %>
+      <div class="input-group">
+        <%= f.search_field :name_or_phone_cont, placeholder: "用户名/手机号", class: "form-control" %>
+        <span class="input-group-btn">
+          <%= f.submit "搜索", class: "btn btn-default" %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <colgroup>
+    <col class="col-md-1">
+    <col class="col-md-1">
+    <col class="col-md-2">
+    <col class="col-md-1">
+    <col class="col-md-2">
+  </colgroup>
+  <thead>
+    <tr>
+      <th><%=sort_link @q, :name %></th>
+      <th><%=sort_link @q, :phone %></th>
+      <th><%=sort_link @q, :sms_confirmed_at %></th>
+      <th><%=sort_link @q, :sms_confirmation_code %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.phone %></td>
+      <td><%= l user.sms_confirmed_at, format: "%Y/%m/%d %H:%M" %></td>
+      <td><%= user.sms_confirmation_code %></td>
+      <td>
+        <%= show_link backend_user_path(user)  do %>
+          <i class="fa fa-eye"></i> 详情
+        <% end %>
+        <%= edit_link edit_backend_user_path(user, ok_url: request.fullpath) if can? :update, user %>
+        <%= delete_link backend_user_path(user, ok_url: request.fullpath) if can? :destroy, user %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="table-pagination">
+  <%= paginate(@users) %>
+</div>
+
+<%= link_to i18n('links.new', model: User, scope: :view), new_backend_user_path(ok_url: request.fullpath), class: 'btn btn-primary' if can? :create, User %>
+

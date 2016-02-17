@@ -1,0 +1,14 @@
+/.bundle
+/log/*
+/log/*.log
+!/log/.keep
+/tmp
+/.idea
+/db/schema.rb
+/Gemfile.lock
+/coverage/
+/config/database.yml
+/config/settings.local.rb
+/doc/Gemfile
+/doc/trello.rb
+/public/uploads

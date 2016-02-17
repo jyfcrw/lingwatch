@@ -1,0 +1,29 @@
+<%= f.input :phone %>
+<%= f.input :name %>
+<%= f.input :avatar do %>
+  <div>
+    <%= image_tag f.object.avatar.thumb.url %>
+  </div>
+  <label>
+    <%= f.check_box :remove_avatar %>
+    勾选此框，保存时将删除图片
+  </label>
+  <div>
+    <%= f.file_field :avatar %>
+  </div>
+<% end %>
+
+<%= f.input :password %>
+<%= f.input :password_confirmation %>
+<%= f.input :sms_confirmed_at, as: :datetimepicker, input_html: { :"data-format" => "YYYY-MM-DD HH:mm:ss" } %>
+<%= f.input :active do %>
+  <%= f.check_box :active, class: "switch" %>
+<% end %>
+<hr />
+
+<%= f.content_wrapper do %>
+	<%= ok_url_tag %>
+	<%= f.button :submit, class: 'btn btn-primary' %>
+	<%= link_to t('links.return', scope: :view), backend_users_path, class: "btn btn-default" %>
+<% end %>
+

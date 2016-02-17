@@ -1,0 +1,9 @@
+<div class="page-header"><h2><%=i18n 'pages.edit', model: SimpleDevice, scope: :view %></h2></div>
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-0">
+		<%= bootstrap_horizontal_form_for @simple_device, url: params[:ok_url] || backend_simple_device_path(@simple_device) do |f| %>
+			<%= render partial: 'form', locals: { f: f } %>
+		<% end %>
+	</div>
+</div>

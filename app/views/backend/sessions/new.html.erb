@@ -1,0 +1,17 @@
+<% content_for :skip_navbar, true %>
+
+<div class="container" style="position: relative;">
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-6" style="padding: 100px 100px;">
+			<div class="session-logo">
+				系统管理
+			</div>
+			<%= simple_form_for @admin_session, url: admin_session_path do |f| %>
+				<%= f.input :email, label: false, input_html: { class: "input-lg" }, autofocus: true %>
+				<%= f.input :password, label: false, input_html: { class: "input-lg" } %>
+				<%= f.button :submit, "登陆", class: "btn btn-lg btn-primary btn-block" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+

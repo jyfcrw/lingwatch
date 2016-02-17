@@ -1,0 +1,19 @@
+<div class="page-header"><h2>修改密码</h2></div>
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-0">
+		<%= bootstrap_horizontal_form_for @admin, url: backend_profiles_path(@admin) do |f| %>
+			<%= f.input :current_password %>
+			<%= f.input :password %>
+			<%= f.input :password_confirmation %>
+
+			<hr />
+
+			<%= f.content_wrapper do %>
+				<%= ok_url_tag %>
+				<%= f.button :submit, class: 'btn btn-primary' %>
+				<%= link_to t('links.return', scope: :view), params[:ok_url], class: "btn btn-default" %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

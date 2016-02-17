@@ -1,0 +1,61 @@
+<div class="page-header clearfix">
+  <h2 class="pull-left"> <%= @user.name %> </h2>
+  <%= link_to backend_users_path, class: "btn btn-default pull-right" do %>
+    <i class="fa fa-angle-left"></i>  <%= t('links.return', scope: :view) %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-md-3">
+        <col class="col-md-9">
+      </colgroup>
+      <tbody>
+        <tr>
+          <td><%= h User, :name %></td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :phone %></td>
+          <td><%= @user.phone %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :sms_confirmation_code %></td>
+          <td><%= @user.sms_confirmation_code %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :sms_last_request_at %></td>
+          <td><%= @user.sms_last_request_at %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :sms_confirmed_at %></td>
+          <td><%= @user.sms_confirmed_at %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :single_access_token %></td>
+          <td><%= @user.single_access_token %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :active %></td>
+          <td><%= t @user.active %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :last_login_at %></td>
+          <td><%= @user.last_login_at %></td>
+        </tr>
+        <tr>
+          <td><%= h User, :last_request_at %></td>
+          <td><%= @user.last_request_at %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <div class="thumbnail borderless">
+      <%= image_tag @user.avatar.thumb.url %>
+    </div>
+  </div>
+</div>
+

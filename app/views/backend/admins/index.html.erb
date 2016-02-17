@@ -1,0 +1,33 @@
+<div class="page-header">
+	<h1><%=i18n 'pages.index', model: Admin, scope: :view %></h1>
+</div>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th><%= Admin.human_attribute_name(:email) %></th>
+			<th><%= Admin.human_attribute_name(:last_login_ip) %></th>
+			<th><%= Admin.human_attribute_name(:last_login_at) %></th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @admins.each do |admin| %>
+		<tr>
+			<td><%= admin.email %></td>
+			<td><%= admin.last_login_ip %></td>
+			<td><%=l admin.last_login_at, format: :long if admin.last_login_at %></td>
+			<td>
+				<%= delete_link backend_admin_path(admin, ok_url: request.fullpath) if can? :destroy, admin %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+
+<div class="table-pagination">
+	<%= paginate(@admins) %>
+</div>
+
+<hr />
+<%= link_to i18n('links.new', model: Admin, scope: :view), new_backend_admin_path(ok_url: request.fullpath), class: 'btn btn-primary' if can? :create, Admin %>

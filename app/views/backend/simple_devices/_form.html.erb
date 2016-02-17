@@ -1,0 +1,30 @@
+<%= f.input :name %>
+<%= f.input :poster do %>
+  <% if f.object.poster? %>
+    <div class="thumbnail">
+      <%= image_tag f.object.poster.thumb.url %>
+    </div>
+    <label>
+      <%= f.check_box :remove_poster %>
+      勾选此框，保存时将删除封面
+    </label>
+  <% end %>
+  <div>
+    <%= f.file_field :poster %>
+  </div>
+<% end %>
+<%= f.input :code %>
+<%= f.input :model_type %>
+<%= f.input :secret %>
+<%= f.input :mac %>
+<%= f.input :activated_at, as: :datetimepicker, input_html: { :"data-format" => "YYYY-MM-DD HH:mm:ss" } %>
+<hr />
+
+<%= f.input :state, collection: f.object.class.base_class.get_state_values, as: :select, include_blank: false %>
+<hr />
+
+<%= f.content_wrapper do %>
+	<%= ok_url_tag %>
+	<%= f.button :submit, class: 'btn btn-primary' %>
+	<%= link_to t('links.return', scope: :view), params[:ok_url] || backend_simple_devices_path(), class: "btn btn-default" %>
+<% end %>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>监控版后台</title>
+	<%= stylesheet_link_tag    "backend", media: "all" %>
+	<%= javascript_include_tag "backend" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+
+<% unless content_for?(:skip_navbar) %>
+<nav class="navbar navbar-default" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+				class="icon-bar"></span><span class="icon-bar"></span>
+		</button>
+		<%= link_to "<i class='fa fa-home'></i>".html_safe, backend_root_path, class: "navbar-brand" %>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse">
+		<%= fume_nav @navbar do |n| %>
+		<ul class="nav navbar-nav">
+			<%= n.li_tag :user do %>
+				<%= link_to backend_users_path do %><span class="fa fa-user"></span> 用户管理<% end %>
+			<% end if can? :index, User %>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+				class="fa fa-tasks"></span> 设备管理 <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<%= n.li_tag :simple_device do %>
+						<%= link_to backend_simple_devices_path do %>简单设备<% end %>
+					<% end if can? :index, Device %>
+					<%= n.li_tag :device do %>
+						<%= link_to backend_devices_path do %>全部设备<% end %>
+					<% end if can? :index, Device %>
+				</ul>
+			</li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+				class="fa fa-wrench"></span> 管理工具 <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<%= n.li_tag :admin do %>
+						<%= link_to backend_admins_path do %><span class="fa fa-user-md"></span> 管理员管理<% end %>
+					<% end if can? :index, Admin %>
+					<%= n.li_tag :sidekiq do %>
+						<%= link_to backend_sidekiq_web_path, target: "_blank" do %><span class="fa fa-tasks"></span> Sidekiq<% end %>
+					<% end if can? :manage, :sidekiq %>
+				</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" style="min-width: 70px;" data-toggle="dropdown">
+					<span class="glyphicon glyphicon-user"></span><b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a><%= current_admin.email %></a></li>
+					<li class="divider"></li>
+					<li><%= link_to "<span class='glyphicon glyphicon-wrench'></span> 修改密码".html_safe, edit_backend_profiles_path(ok_url: request.fullpath) %></li>
+					<li class="divider"></li>
+					<li><%= link_to destroy_admin_session_path, method: 'delete' do %><span class="glyphicon glyphicon-log-out"></span> 登出</a><% end %></li>
+				</ul>
+			</li>
+		</ul>
+		<% end %>
+	</div>
+</nav>
+<% end %>
+
+<div class="container">
+	<% flash.each do |type, message| %>
+		<% mapping = { notice: "success", error: "danger", alert: "info" } %>
+		<div class="alert alert-<%= mapping[type.to_sym] %> fade in">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<%= message %>
+		</div>
+	<% end %>
+
+	<%= yield %>
+</div>
+
+</body>
+</html>
