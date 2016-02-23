@@ -1,23 +1,23 @@
 <%
-  simple_device_index_path = @user.nil? ? backend_simple_devices_path : backend_user_simple_devices_path(@user)
+  watch_index_path = @user.nil? ? backend_watches_path : backend_user_watches_path(@user)
 %>
 
 
 <div class="page-header row">
   <div class="col-md-6">
     <% if @user %>
-      <h3> <%= @user.name %> <i class="fa fa-angle-right"></i> 简单设备 </h3>
+      <h3> <%= @user.name %> <i class="fa fa-angle-right"></i> <%= h Watch %> </h3>
     <% else %>
-      <h1> 简单设备 </h1>
+      <h1> <%= h Watch %> </h1>
     <% end %>
   </div>
   <div class="col-md-1" style="padding:0; position: relative; height: 34px;">
     <% if @q.conditions.present? %>
-      <%= link_to "取消搜索", simple_device_index_path, style: "position: absolute; bottom: 0; right: 0;" %>
+      <%= link_to "取消搜索", watch_index_path, style: "position: absolute; bottom: 0; right: 0;" %>
     <% end %>
   </div>
   <div class="col-md-4">
-    <%= search_form_for @q, url: simple_device_index_path do |f| %>
+    <%= search_form_for @q, url: watch_index_path do |f| %>
       <div class="input-group">
         <%= f.search_field :code_or_name_cont, placeholder: "序列号 / 名称", class: "form-control" %>
         <span class="input-group-btn">
@@ -40,7 +40,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @simple_devices.each do |device| %>
+  <% @watches.each do |device| %>
     <tr>
       <td><%= device.model_type %></td>
       <td><%= device.code %></td>
@@ -48,9 +48,10 @@
       <td><%= t(device.state, scope: "activerecord.symbolizes.device.state") %></td>
       <td><%=l device.activated_at, format: "%Y/%m/%d %H:%M:%S" if device.activated_at %></td>
       <td>
-        <%= link_to "<i class='fa fa-list-ul'></i> 绑定".html_safe, backend_simple_device_bindings_path(device) if can? :index, DeviceBinding %>
-        <%= edit_link edit_backend_simple_device_path(device) if can? :update, device %>
-        <%= delete_link backend_simple_device_path(device) if can? :destroy, device %>
+        <%= link_to "<i class='fa fa-link'></i> #{device.binding.nil? ? "未" : "已"}绑定".html_safe, backend_watch_binding_path(device) if can? :index, DeviceBinding %>
+        <%= link_to "<i class='fa fa-list-ul'></i> 会话".html_safe, backend_watch_dialogue_path(device) if can? :index, Dialogue %>
+        <%= edit_link edit_backend_watch_path(device) if can? :update, device %>
+        <%= delete_link backend_watch_path(device) if can? :destroy, device %>
       </td>
     </tr>
   <% end %>
@@ -58,8 +59,8 @@
 </table>
 
 <div class="table-pagination">
-  <%= paginate(@simple_devices) %>
+  <%= paginate(@watches) %>
 </div>
 
-<%= link_to i18n('links.new', model: SimpleDevice, scope: :view), new_backend_simple_device_path, class: 'btn btn-primary' if can? :create, Device %>
+<%= link_to i18n('links.new', model: Watch, scope: :view), new_backend_watch_path, class: 'btn btn-primary' if can? :create, Device %>
 

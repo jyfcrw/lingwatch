@@ -3,8 +3,11 @@ zh-CN:
     models:
       admin: 管理员
       user: 用户
+      user_agent: 移动端
       device: 设备
       device_binding: 设备绑定
+      watch: 手表/小手机
+      dialogue: 会话
     attributes:
       admin:
         email: 邮箱
@@ -22,6 +25,7 @@ zh-CN:
         state: 状态
         name: 名称
         poster: 封面
+        uid: UID
       device_binding:
         created_at: 创建时间
         device_id: 设备
@@ -43,6 +47,14 @@ zh-CN:
         single_access_token: API密钥
         last_login_at: 最后登陆时间
         last_request_at: 最后请求时间
+      user_agent:
+        code: 编号
+        secret: 密钥
+        state: 状态
+        uid: UID
+        os_type: 系统
+      dialogue:
+        state: 状态
     errors:
       models:
         camera_binding:
@@ -55,6 +67,14 @@ zh-CN:
           pending: 未使用
           offline: 下线
           online:  上线
+      user_agent:
+        state:
+          offline: 下线
+          online:  上线
+      dialogue:
+        state:
+          open: 打开
+          closed: 关闭
   time:
     formats:
       long: "%Y年%m月%d日 %H:%M:%S"

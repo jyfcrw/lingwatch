@@ -14,7 +14,9 @@ class AdminAbility
 
     can    :manage,  Backend
     can    :manage,  User
+    can    :manage,  UserAgent
     can    :manage,  Device
     can    :manage,  DeviceBinding
+    can    :manage,  Dialogue
   end
 end

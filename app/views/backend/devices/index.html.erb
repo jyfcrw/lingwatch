@@ -42,7 +42,7 @@
   <tbody>
   <% @devices.each do |device| %>
     <%
-      _bindings_path = eval("backend_#{device.model_name.param_key}_bindings_path(device)")
+      _bindings_path = eval("backend_#{device.model_name.param_key}_binding_path(device)")
       _edit_path = eval("edit_backend_#{device.model_name.param_key}_path(device)")
       _show_path = eval("backend_#{device.model_name.param_key}_path(device)")
     %>

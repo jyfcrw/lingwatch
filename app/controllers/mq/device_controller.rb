@@ -1,6 +1,5 @@
 class Mq::DeviceController < Mq::BaseController
   def state
-    @device = Device.where(code: params[:cid]).take!
     if params[:state] and @device.update(state: params[:state]) # params[:ts]
       render json: { result: 0 }, status: :ok
     else
@@ -8,6 +7,7 @@ class Mq::DeviceController < Mq::BaseController
     end
   end
 
+  # 接口用户更新设备其他属性
   def update
   end
 end

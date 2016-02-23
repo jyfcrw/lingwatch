@@ -47,6 +47,9 @@
         <%= show_link backend_user_path(user)  do %>
           <i class="fa fa-eye"></i> 详情
         <% end %>
+        <%= link_to backend_user_user_agents_path(user) do %>
+          <i class="fa fa-list-ul"></i> 终端
+        <% end %>
         <%= edit_link edit_backend_user_path(user, ok_url: request.fullpath) if can? :update, user %>
         <%= delete_link backend_user_path(user, ok_url: request.fullpath) if can? :destroy, user %>
       </td>

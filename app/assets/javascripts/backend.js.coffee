@@ -5,6 +5,7 @@
 #= require moment/min/locales
 #= require bootstrap-switch
 #= require eonasdan-bootstrap-datetimepicker
+#= require select2
 
 jQuery ->
   $(".form-group.datetimepicker .input-group, .form-group.datepicker .input-group").each ->

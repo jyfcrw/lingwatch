@@ -1,0 +1,39 @@
+<div class="page-header row">
+  <div class="col-md-6">
+    <h1> 移动客户端 </h1>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-default pull-right" onclick="javascript:history.go(-1);">
+      返回上一页
+    </button>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%=sort_link @q, :code %></th>
+      <th><%=sort_link @q, :state %></th>
+      <th><%=sort_link @q, :os_type %></th>
+      <th><%=sort_link @q, :uid %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @user_agents.each do |user_agent| %>
+    <tr>
+      <td><%= user_agent.code %></td>
+      <td><%= user_agent.state_text %></td>
+      <td><%= user_agent.os_type %></td>
+      <td><%= user_agent.uid %></td>
+      <td>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="table-pagination">
+  <%= paginate(@user_agents) %>
+</div>
+

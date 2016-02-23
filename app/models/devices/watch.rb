@@ -18,15 +18,21 @@
 #  uid          :string
 #
 
-class Device < ActiveRecord::Base
-  symbolize :state, in: [ :pending, :online, :offline ], default: :pending
+class Watch < Device
+  mount_uploader :poster, PosterUploader
 
-  has_one  :binding, class_name: "DeviceBinding"
-  has_one  :user, through: :binding, foreign_key: :user_id
+  has_many :dialogues, foreign_key: :device_id
 
-  has_many :bindings, class_name: "DeviceBinding"
-  has_many :users, through: :bindings, foreign_key: :user_id
+  validates_presence_of :uid
 
-  validates_presence_of :code, :model_type
+  before_create :assign_defaults
 
+  def available_dialogue
+    dialogues.open.last
+  end
+
+private
+  def assign_defaults
+    self.secret = SecureRandom.hex(16) unless self.secret
+  end
 end

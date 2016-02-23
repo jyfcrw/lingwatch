@@ -12,5 +12,10 @@ class Ability
 
   def user_permissions(user)
     can :manage, user
+    can :manage, UserAgent
+    can :manage, Device
+    can :manage, DeviceBinding
+    can :manage, Dialogue
+
   end
 end

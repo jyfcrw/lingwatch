@@ -1,0 +1,77 @@
+<div class="page-header row">
+  <div class="col-md-6">
+    <h1> <%= h Watch %>绑定 </h1>
+  </div>
+  <div class="col-md-6">
+    <%= link_to backend_watches_path, class: "btn btn-default pull-right" do %>
+      返回上一页
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+      <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-md-3">
+        <col class="col-md-9">
+      </colgroup>
+      <thead><h3>当前设备</h3></thead>
+      <tbody>
+        <tr>
+          <td><%= h Device, :code %></td>
+          <td><%= @watch.code %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% if @watch_binding and  @user = @watch_binding.user  %>
+      <table class="table table-bordered table-striped">
+        <colgroup>
+          <col class="col-md-3">
+          <col class="col-md-9">
+        </colgroup>
+        <thead><h3>当前绑定用户</h3></thead>
+        <tbody>
+          <tr>
+            <td><%= h User, :name %></td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td><%= h User, :phone %></td>
+            <td><%= @user.phone %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="well">设备还没有绑定用户</div>
+    <% end %>
+  </div>
+  <div class="col-md-5 col-md-offset-1">
+    <h3>绑定用户</h3>
+    <%= bootstrap_horizontal_form_for :watch_binding, url: backend_watch_binding_path(@watch) do |f| %>
+      <div class="input-group">
+        <select class="better-selector" data-placeholder="填写用户的手机号" style="width: 240px;" name="phone"><option></option></select>
+        <%= f.button :submit, value: "绑定", style: "margin-left: 10px; padding: 6px 30px;", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    <% if @watch_binding %>
+      <h3>解绑用户</h3>
+      <%= link_to backend_watch_binding_path(@watch), class: "btn btn-danger btn-lg", method: :delete, data: { confirm: "确定要解除与当前用户的绑定吗？" } do %>
+        解除当前用户的绑定
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% users = User.select(:id, :phone, :name).map {|u| { id: u.phone, text: "#{u.name}(#{u.phone})" } } %>
+
+<script type="text/javascript">
+  usersDataset = JSON.parse('<%= users.to_json.html_safe %>');
+  $(".better-selector").select2({
+    placeholder: function(){
+        $(this).data('placeholder');
+    },
+    theme: "bootstrap",
+    data: usersDataset
+  });
+</script>

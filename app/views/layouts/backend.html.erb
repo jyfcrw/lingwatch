@@ -29,8 +29,8 @@
 			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
 				class="fa fa-tasks"></span> 设备管理 <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<%= n.li_tag :simple_device do %>
-						<%= link_to backend_simple_devices_path do %>简单设备<% end %>
+					<%= n.li_tag :watch do %>
+						<%= link_to backend_watches_path do %>手表/小手机<% end %>
 					<% end if can? :index, Device %>
 					<%= n.li_tag :device do %>
 						<%= link_to backend_devices_path do %>全部设备<% end %>

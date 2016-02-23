@@ -45,8 +45,9 @@ class User < ActiveRecord::Base
   has_many :device_bindings
   has_many :devices, through: :device_bindings
 
-  # For example
-  has_many :simple_devices, through: :device_bindings, source: :device , source_type: "SimpleDevice"
+  has_many :watches, through: :device_bindings, source: :device , source_type: "Watch"
+
+  has_many :user_agents
 
   mount_uploader :avatar, AvatarUploader
 

@@ -57,6 +57,7 @@ source 'https://rails-assets.org' do
   gem "rails-assets-moment", "2.8.3"
   gem "rails-assets-eonasdan-bootstrap-datetimepicker", "3.1.3"
   gem "rails-assets-lodash", "2.4.1"
+  gem 'rails-assets-select2', "4.0.1"
 end
 
 group :development, :test do

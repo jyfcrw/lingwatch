@@ -7,4 +7,3 @@ json.change_profile_url        api_v1_change_profile_url
 json.change_password_url       api_v1_change_password_url
 json.sign_out_url              api_v1_sign_out_url
 
-json.nvrs_url                  api_v1_nvrs_url

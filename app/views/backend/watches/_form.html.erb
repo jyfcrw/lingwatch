@@ -15,6 +15,7 @@
 <% end %>
 <%= f.input :code %>
 <%= f.input :model_type %>
+<%= f.input :uid %>
 <%= f.input :secret %>
 <%= f.input :mac %>
 <%= f.input :activated_at, as: :datetimepicker, input_html: { :"data-format" => "YYYY-MM-DD HH:mm:ss" } %>
@@ -26,5 +27,5 @@
 <%= f.content_wrapper do %>
 	<%= ok_url_tag %>
 	<%= f.button :submit, class: 'btn btn-primary' %>
-	<%= link_to t('links.return', scope: :view), params[:ok_url] || backend_simple_devices_path(), class: "btn btn-default" %>
+	<%= link_to t('links.return', scope: :view), params[:ok_url] || backend_watches_path(), class: "btn btn-default" %>
 <% end %>

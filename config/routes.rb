@@ -15,12 +15,14 @@ Rails.application.routes.draw do
     resources :admins
     resource  :profiles
     resources :users do
-      resources :simple_devices
+      resources :user_agents
+      resources :watches
     end
 
     resources :devices
-    resources :simple_devices do
-      resources :bindings, controller: "simple_device_bindings"
+    resources :watches do
+      resource :binding, controller: "watch_binding"
+      resource :dialogue, controller: "watch_dialogue"
     end
   end
 
@@ -49,7 +51,16 @@ Rails.application.routes.draw do
       post "change_password"   => "user#change_password"
       post "sign_out"          => "user#sign_out"
 
-      # resources :devices
+      namespace :w do
+        root to: "main#root"
+        post "auth"          => "main#auth"
+        post "bind"          => "main#bind"
+        post "unbind"        => "device#unbind"
+
+        resource "dialogue" do
+          post "join", "exit"
+        end
+      end
     end
   end
 
