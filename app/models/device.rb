@@ -19,6 +19,8 @@
 #
 
 class Device < ActiveRecord::Base
+  store_accessor :setting, :state_timestamp
+
   symbolize :state, in: [ :pending, :online, :offline ], default: :pending
 
   has_one  :binding, class_name: "DeviceBinding"

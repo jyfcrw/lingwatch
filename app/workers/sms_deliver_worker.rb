@@ -15,8 +15,8 @@ class SmsDeliverWorker
     response = conn.post do |req|
       req.url Project.leancloud_send_sms_url
       req.headers['Content-Type'] = 'application/json'
-      req.headers['X-AVOSCloud-Application-Id'] = Project.leancloud_appid
-      req.headers['X-AVOSCloud-Application-Key'] = Project.leancloud_appkey
+      req.headers['X-LC-Id'] = Project.leancloud_appid
+      req.headers['X-LC-Key'] = Project.leancloud_appkey
       req.body = { mobilePhoneNumber: phone, template: "general", xcode: code.to_s }.to_json
     end
 

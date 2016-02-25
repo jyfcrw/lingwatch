@@ -27,7 +27,7 @@ class Dialogue < ActiveRecord::Base
   after_create :close_other_dialogues
 
   def full_topic_name
-    "Dailogue/#{code}"
+    "Dialogue/#{code}"
   end
 
   def close_other_dialogues

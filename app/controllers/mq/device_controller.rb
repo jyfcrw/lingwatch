@@ -1,6 +1,9 @@
 class Mq::DeviceController < Mq::BaseController
   def state
-    if params[:state] and @device.update(state: params[:state]) # params[:ts]
+    return render json: { result: 1, error: "请求参数错误" }, status: :not_found unless params[:state]
+    return render json: { result: 0 }, statue: :unprocessable_entity if @device.state_timestamp and @device.state_timestamp > params[:ts]
+
+    if @device.update(state: params[:state], state_timestamp: params[:ts])
       render json: { result: 0 }, status: :ok
     else
       render json: { result: 1, error: "设备状态更新失败" }, status: :not_found
