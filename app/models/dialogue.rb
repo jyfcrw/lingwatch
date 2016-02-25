@@ -16,6 +16,7 @@ class Dialogue < ActiveRecord::Base
 
   belongs_to :device
   has_many   :dialogue_accessions
+  has_many   :dialogue_messages
 
   scope :open, -> { where(state: :open) }
 
@@ -26,7 +27,7 @@ class Dialogue < ActiveRecord::Base
   after_create :close_other_dialogues
 
   def full_topic_name
-    "DL#{code}"
+    "Dailogue/#{code}"
   end
 
   def close_other_dialogues

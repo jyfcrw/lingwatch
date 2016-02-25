@@ -10,8 +10,8 @@
 </div>
 
 <div class="row">
-  <div class="col-md-5">
-      <table class="table table-bordered table-striped">
+  <div class="col-md-6">
+    <table class="table table-bordered table-striped">
       <colgroup>
         <col class="col-md-3">
         <col class="col-md-9">
@@ -19,21 +19,59 @@
       <thead><h3>会话信息</h3></thead>
       <tbody>
         <tr>
-          <td><%= h Device, :code %></td>
+          <th><%= h Device, :code %></th>
           <td><%= @watch.code %></td>
         </tr>
         <tr>
-          <td><%= h Dialogue, :code %></td>
+          <th><%= h Dialogue, :code %></th>
           <td><%= (@watch_dialogue && @watch_dialogue.code) || "<i>设备还没有会话</i>".html_safe %></td>
         </tr>
         <% if @watch_dialogue %>
           <tr>
-            <td><%= h Dialogue, :state %></td>
+            <th><%= h Dialogue, :state %></th>
             <td><%= @watch_dialogue.state_text %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+
+    <% if @watch_dialogue %>
+      <table class="table table-bordered table-striped">
+        <thead><h3>会话加入记录</h3></thead>
+        <tbody>
+          <tr>
+            <th>时间</th>
+            <th>设备编号</th>
+            <th>手机号</th>
+            <th>动作</th>
+          </tr>
+          <% @watch_dialogue.dialogue_accessions.order("created_at DESC").each_with_index do |accession, i| %>
+            <tr>
+              <td><%= l accession.created_at, format: "%D %H:%m:%S" %></td>
+              <td><%= accession.device.code %></td>
+              <td><%= accession.device.user.phone %></td>
+              <td><%= accession.action_text %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <h3>最近发言 <small class="pull-right">最近20条消息</small></h3>
+    <div class="list-group">
+      <% DialogueMessage.where(device: @watch).limit(20).order("created_at DESC").each do |message| %>
+        <div class="list-group-item">
+          <div >
+            <span class="label label-gray">用户</span><%= message.phone %>
+            <span class="label label-gray">会话</span><%= message.topic %>
+            <span class="pull-right"><%= l message.created_at, format: :short %></span>
+          </div>
+          <div class="well well-sm well-short"><%= message.content %></div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 </div>

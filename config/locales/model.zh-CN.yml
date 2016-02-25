@@ -55,6 +55,7 @@ zh-CN:
         os_type: 系统
       dialogue:
         state: 状态
+        code: 编号
     errors:
       models:
         camera_binding:
@@ -75,6 +76,10 @@ zh-CN:
         state:
           open: 打开
           closed: 关闭
+      dialogue_accession:
+        action:
+          in: 加入
+          out: 退出
   time:
     formats:
       long: "%Y年%m月%d日 %H:%M:%S"

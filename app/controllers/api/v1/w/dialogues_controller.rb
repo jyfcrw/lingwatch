@@ -30,7 +30,13 @@ class Api::V1::W::DialoguesController < Api::V1::W::BaseController
     return render json: { result: 1, error: "没有找到此会话" }, status: :not_found unless @dialogue
 
     if DialogueAccession.create(device: current_watch, dialogue: @dialogue)
-      render json: { result: 0 }
+      render json: {
+        result: 0,
+        code: @dialogue.code,
+        state: @dialogue.state,
+        topic: @dialogue.full_topic_name,
+        updated_at: @dialogue.updated_at
+      }
     else
       render json: { result: 1, error: "加入会话异常" }, status: :not_found
     end

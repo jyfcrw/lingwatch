@@ -35,6 +35,14 @@ body {
   }
 }
 
+.well-short {
+  margin-bottom: 3px;
+}
+
+.label-gray {
+  color: #999;
+}
+
 .table-pagination {
   @include clearfix;
   margin-top: -10px;

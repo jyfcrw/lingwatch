@@ -24,6 +24,7 @@ class Watch < Device
   has_many :dialogues, foreign_key: :device_id
 
   validates_presence_of :uid
+  validates :code, :uid, uniqueness: true
 
   before_create :assign_defaults
 
@@ -33,6 +34,6 @@ class Watch < Device
 
 private
   def assign_defaults
-    self.secret = SecureRandom.hex(16) unless self.secret
+    self.secret = SecureRandom.hex(16)
   end
 end

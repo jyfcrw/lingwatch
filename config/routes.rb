@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     post "device/state"           => "device#state"
     post "device/data"            => "device#update"
 
-    # post "message"                => "message#create"
+    post "message"                => "message#create"
   end
 
   namespace :api, path: nil, constraints: { subdomain: 'api' }, defaults: { format: "json" } do

@@ -16,7 +16,7 @@
 <%= f.input :code %>
 <%= f.input :model_type %>
 <%= f.input :uid %>
-<%= f.input :secret %>
+<%= f.input :secret, hint: "如果留空，将自动生成强安全的密钥" %>
 <%= f.input :mac %>
 <%= f.input :activated_at, as: :datetimepicker, input_html: { :"data-format" => "YYYY-MM-DD HH:mm:ss" } %>
 <hr />
