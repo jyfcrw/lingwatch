@@ -1,5 +1,7 @@
 source "https://ruby.taobao.org"
 
+gem 'bundler', '>= 1.8.4'
+
 gem 'rails', '4.2.2'
 gem "rails-i18n", "4.0.8"
 gem "pg", "0.18.4"
