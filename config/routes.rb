@@ -1,6 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  root to: "dialogues#show"
+  resource  :dialogue do
+    get :room
+  end
 
   scope module: "backend", path: "backend" do
     get    "sign_in"  => "sessions#new", as: "new_admin_session"

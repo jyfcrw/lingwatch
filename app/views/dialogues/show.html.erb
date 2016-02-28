@@ -1,0 +1,22 @@
+<div class="dialogue">
+  <div class="container">
+    <div class="join-wrapper">
+      <div class="container">
+        <%= simple_form_for :join, url: dialogue_path do |f| %>
+          <div class="join-group">
+            <%= f.text_field :code, class: "join-code", placeholder: "请输入6位会话号码", maxlength: 6, onfocus: "$('.join-alert').html('')" %>
+            <%= f.button :submit, value: "加入会话", class: "join-submit" %>
+            <div class="join-alert">
+              <% if err %>
+                <span class="join-alert-error"><span class="mui-icon mui-icon-info"></span> <%= err %></span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bottom">
+  <div class="copyright">© 2016 炫视通 · 灵云</div>
+</div>
